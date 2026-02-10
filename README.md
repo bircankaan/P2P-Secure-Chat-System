@@ -32,15 +32,17 @@ The system is engineered as a modular suite of four distinct processes that run 
 | **Chat Initiator** | **TCP** | The main UI module. Handles user selection, encryption toggles (Secure/Unsecure), and session start. |
 | **Chat Responder** | **TCP** | A multi-threaded server listening on **Port 6001** to accept and process incoming message requests. |
 
-## 📡 Network Analysis (Wireshark)
+## 📡 Network Security & Packet Analysis
 
-System integrity and security protocols were verified at the packet level:
-* **TCP Handshake:** Confirmed successful 3-way handshakes for every chat initiation on Port 6001.
-* **Payload Encryption:** Verified that JSON-formatted payloads are fully obfuscated during "Secure Chat" mode, preventing plain-text exposure of sensitive communication.
+To verify the effectiveness of our encryption protocol, we performed deep packet inspection using **Wireshark**. The transition from plain-text to encrypted payloads is demonstrated below:
 
-> **Visual Proof:** Wireshark captures (stored in the assets folder) demonstrate the encrypted data stream and protocol headers during active sessions.
->
-> <img src="assets/wireshark_proof.jpg" alt="Wireshark Analysis" width="800"/>
+### 🔓 Baseline: Unencrypted Communication
+In standard mode, the JSON payload clearly shows the message content in plain-text ("armut"), indicating a vulnerability to sniffing.
+![Unencrypted Capture](assets/unencrypted_proof.jpg)
+
+### 🔐 Verified: Encrypted Communication (3DES)
+Once the "Secure Chat" is enabled, the message content is fully obfuscated ("NQCHISZO+RE="). This verifies that the `pyDes` integration successfully secures the data stream.
+![Encrypted Capture](assets/encrypted_proof.jpg)
 
 ## ⚠️ Engineering Challenges & Solutions
 
