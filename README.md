@@ -38,11 +38,11 @@ To verify the effectiveness of our encryption protocol, we performed deep packet
 
 ### 🔓 Baseline: Unencrypted Communication
 In standard mode, the JSON payload clearly shows the message content in plain-text ("armut"), indicating a vulnerability to sniffing.
-![Unencrypted Capture](assets/unencrypted_proof.jpg.jpeg)
+![Unencrypted Capture](assets/unencrypted_proof.jpg)
 
 ### 🔐 Verified: Encrypted Communication (3DES)
 Once the "Secure Chat" is enabled, the message content is fully obfuscated ("NQCHISZO+RE="). This verifies that the `pyDes` integration successfully secures the data stream.
-![Encrypted Capture](assets/encrypted_proof.jpg.jpeg)
+![Encrypted Capture](assets/encrypted_proof.jpg)
 
 ## ⚠️ Engineering Challenges & Solutions
 
